@@ -25,6 +25,13 @@
                             <h5>Autore: {{ $project->autore }}</h5>
                             <h6> {{ $project->type_id ? $project->type->nome : 'Nessuna categoria' }}
                             </h6>
+                            <h6>
+                                @forelse ($project->technologies as $technology)
+                                    #{{ $technology->name }}
+                                @empty
+                                    Non è stata assegnata nessuna tecnologia
+                                @endforelse
+                            </h6>
                             <h5>Data fine progetto: {{ $project->fine_progetto }}</h5>
                         </div>
 
