@@ -27,7 +27,7 @@
                             </h6>
                             <h6>
                                 @forelse ($project->technologies as $technology)
-                                    #{{ $technology->name }}
+                                    #{{ $technology->nome }}
                                 @empty
                                     Non è stata assegnata nessuna tecnologia
                                 @endforelse
