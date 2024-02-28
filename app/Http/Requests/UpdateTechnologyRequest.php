@@ -13,7 +13,7 @@ class UpdateTechnologyRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,15 @@ class UpdateTechnologyRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'nome' => 'required|max:150|unique:technologies',
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'nome.required' => 'Il nome è obbligatorio',
+            'nome.max'     => 'Il nome può contenere al massimo 150 caratteri',
+            'nome.unique'     => 'E\' già presente una tecnologia con questo nome',
         ];
     }
 }

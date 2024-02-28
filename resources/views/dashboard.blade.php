@@ -45,6 +45,15 @@
                                                     <a href="{{ route('admin.types.create') }}" class="nav-link px-0">
                                                         <span class="d-none d-sm-inline">Create New Type</span></a>
                                                 </li>
+                                                <li class="w-100">
+                                                    <a href="{{ route('admin.technologies.index') }}" class="nav-link px-0">
+                                                        <span class="d-none d-sm-inline">Technologies</span></a>
+                                                </li>
+                                                <li class="w-100">
+                                                    <a href="{{ route('admin.technologies.create') }}"
+                                                        class="nav-link px-0">
+                                                        <span class="d-none d-sm-inline">Create New Technology</span></a>
+                                                </li>
                                             </ul>
                                         </li>
                                     </ul>

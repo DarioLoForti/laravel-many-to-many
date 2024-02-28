@@ -6,14 +6,14 @@ body{
 
 
 .card{
-    height: 350px;
+    height: 400px; 
     img{
         width: 50%;
         margin-left: 45px;
     }
 }
 .card-show{
-    height: 500px;
+    max-height: 500px;
     .card-img{
         
         img{
