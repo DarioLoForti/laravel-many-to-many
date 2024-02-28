@@ -95,7 +95,9 @@ class ProjectController extends Controller
         }
 
         $types = Type::all();
-        return view('admin.projects.edit', compact('project', 'types', 'error_message'));
+        $technologies = Technology::all();
+
+        return view('admin.projects.edit', compact('project', 'types', 'error_message', 'technologies'));
     }
 
     /**
@@ -128,6 +130,13 @@ class ProjectController extends Controller
         $project->slug = $slug;
 
         $project->update($form_data);
+
+        if ($request->has('technologies')) {
+            $project->technologies()->sync($form_data['technologies']);
+        } else {
+            $project->technologies()->sync([]);
+        }
+
 
         return redirect()->route('admin.projects.index');
     }

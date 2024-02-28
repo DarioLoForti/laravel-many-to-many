@@ -60,6 +60,31 @@
                         @enderror
                     </div>
                     <div class="form-group my-3">
+                        <label class="control-label text-white">Selezione tecnologia</label>
+                        <div class="my-3">
+                            @foreach ($technologies as $technology)
+                                <div class="form-check-inline">
+                                    @if ($errors->any())
+                                        <input type="checkbox" name="technologies[]" id="" class="form-check-input"
+                                            value="{{ $technology->id }}"
+                                            {{ in_array($technology->id, old('technologies')) ? 'checked' : '' }}>
+                                    @else
+                                        <input type="checkbox" name="technologies[]" id="" class="form-check-input"
+                                            value="{{ $technology->id }}"
+                                            {{ $project->technologies->contains($technology->id) ? 'checked' : '' }}>
+                                    @endif
+
+                                    <label for=""
+                                        class="fomr-check-label text-white">{{ $technology->nome }}</label>
+                                </div>
+                            @endforeach
+                        </div>
+                        </select>
+                        @error('type_id')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group my-3">
                         <label for="descrizione" class="control-label text-white">Descrizione</label>
                         <textarea name="descrizione" id="descrizione" class="form-control @error('descrizione') is-invalid @enderror"
                             value="" placeholder="Inserisci la descrizione del progetto" cols="50" rows="10" required>{{ old('descrizione') ?? $project->descrizione }}</textarea>
