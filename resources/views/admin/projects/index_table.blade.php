@@ -80,56 +80,53 @@
                                 </div>
                             </div>
                             <div class="col-12">
-                                <h2 class="text-center text-white mt-3">Portfolio</h2>
+                                <h2 class="text-center text-white mt-3">Progetti</h2>
                             </div>
                             <div class="row">
-                                @foreach ($projects as $project)
-                                    <div class="col-2 py-5">
-                                        <div class="card text-center">
-                                            @if ($project->cover_image != null)
-                                                <div class="my-3">
-                                                    <img src="{{ asset('/storage/' . $project->cover_image) }}"
-                                                        alt="{{ $project->titolo }}">
-                                                </div>
-                                            @else
-                                                <img src="{{ asset('/img/folder.png') }}" alt="{{ $project->titolo }}">
-                                            @endif
-                                            <div class="card-body">
-                                                <h5 class="card-title">{{ $project->titolo }}</h5>
-                                                <h6> {{ $project->type_id ? $project->type->nome : 'Nessuna categoria' }}
-                                                </h6>
-                                                <h6>
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Titolo</th>
+                                            <th>Slug</th>
+                                            <th>Tipologia</th>
+                                            <th>Tecnologia</th>
+                                            <th>Descrizione</th>
+                                            <th>Strumenti</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($projects as $project)
+                                            <tr>
+                                                <td>{{ $project->id }}</td>
+                                                <td>{{ $project->titolo }}</td>
+                                                <td>{{ $project->slug }}</td>
+                                                <td>{{ $project->type_id ? $project->type->nome : 'Nessuna categoria' }}
+                                                </td>
+                                                <td>
                                                     @forelse ($project->technologies as $technology)
                                                         #{{ $technology->nome }}
                                                     @empty
                                                         nessuna tecnologia
                                                     @endforelse
-                                                </h6>
-                                                {{-- <h6> {{ $project->techonology->id ? $project->techonology->nome : 'Nessuna tecnologia' }}
-                                                </h6> --}}
-                                                <p class="card-text">{{ Str::limit($project->descrizione, 30, '...') }}</p>
-                                                <div class="d-flex mt-4">
-                                                    <a href="{{ route('admin.projects.show', ['project' => $project->id]) }}"
-                                                        class="btn btn-sm btn-primary">Dettagli</a>
-                                                    <a href="{{ route('admin.projects.edit', $project->id) }}"
-                                                        class="btn btn-sm btn-warning ms-2">Modifica</a>
-                                                </div>
-                                                {{-- <form
-                                                    action="{{ route('admin.projects.destroy', ['project' => $project->id]) }}"
-                                                    method="post"
-                                                    onsubmit="return confirm('Sei sicuro di voler eliminare questo progetto?')">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit"
-                                                        class="btn btn-sm btn-danger mt-3">Elimina</button>
-                                                </form> --}}
-                                                <button class="btn btn-sm btn-danger mt-3" data-bs-toggle="modal"
-                                                    data-bs-target="#modal_delete_{{ $project->id }}">Elimina</button>
-                                                @include('admin.projects.modal')
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endforeach
+                                                </td>
+                                                <td>{{ $project->descrizione }}</td>
+                                                <td>
+                                                    <div class="d-flex mt-4">
+                                                        <a href="{{ route('admin.projects.show', ['project' => $project->id]) }}"
+                                                            class="btn btn-sm btn-primary">Dettagli</a>
+                                                        <a href="{{ route('admin.projects.edit', $project->id) }}"
+                                                            class="btn btn-sm btn-warning ms-2">Modifica</a>
+                                                        <button class="btn btn-sm btn-danger mt-3" data-bs-toggle="modal"
+                                                            data-bs-target="#modal_delete_{{ $project->id }}">Elimina</button>
+                                                        @include('admin.projects.modal')
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+
                             </div>
                         </div>
                     </div>

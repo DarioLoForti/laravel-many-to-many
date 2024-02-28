@@ -29,6 +29,7 @@ Route::get('/', function () {
 Route::middleware(['auth', 'verified'])->name('admin.')->prefix('admin')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('/projects', ProjectController::class);
+    Route::get('/projects_index_table', [ProjectController::class, 'index_table'])->name('index_table');
     Route::resource('/types', TypeController::class);
     Route::resource('/technologies', TechnologyController::class);
 });

@@ -31,6 +31,18 @@ class ProjectController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function index_table()
+    {
+        $projects = Project::all();
+
+        return view('admin.projects.index_table', compact('projects'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
         $types = Type::all();
